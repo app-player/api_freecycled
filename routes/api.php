@@ -10,4 +10,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('user', 'UserController@details');
 
     Route::resource('posts', 'PostController');
+    Route::resource('pages', 'PageController');
+    Route::resource('category', 'CategoryController');
+    Route::resource('type', 'TypeController');
 });
