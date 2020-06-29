@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    public function index()
+    public function display_data()
     {
-        $posts = Post::all();
+        $posts = Post::with('category', 'type', 'user')->get();
 
         return response()->json([
             'success' => true,

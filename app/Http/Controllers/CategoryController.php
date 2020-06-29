@@ -9,33 +9,19 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
 
-    public function index()
+    public function display_categories()
     {
-        $categories = Category::all();
-        $posts = Post::all();
+        $posts = Post::with('category', 'type', 'user')->get();
+
         return response()->json([
             'success' => true,
-            'data' => $categories,
             'data' => $posts
         ]);
     }
 
-
-    public function create()
+    public function show_categories($id)
     {
-        //
-    }
-
-    
-    public function store(Request $request)
-    {
-        //
-    }
-
-    
-    public function show($id)
-    {
-        $category_post = Post::where('category_id',$id)->get();
+        $category_post = Post::where('category_id',$id)->with('user', 'category', 'type')->get();
         $id_= $id;
 
         return response()->json([

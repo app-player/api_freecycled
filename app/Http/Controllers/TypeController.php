@@ -35,7 +35,7 @@ class TypeController extends Controller
 
     public function show($id)
     {
-        $type_post = Post::where('type_id',$id)->get();
+        $type_post = Post::where('type_id',$id)->with('user', 'category', 'type')->get();
         $id_= $id;
 
         return response()->json([
