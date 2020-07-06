@@ -17,7 +17,8 @@ class UserController extends Controller{
         $user = User::create([
             'username' => $request->username,
             'email' => $request->email,
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
+
         ]);
 
         $token = $user->createToken('TutsForWeb')->accessToken;
@@ -38,8 +39,8 @@ class UserController extends Controller{
             return response()->json(['error' => 'UnAuthorised'], 401);
         }
     }
-    // public function details()
-    // {
-    //     return response()->json(['user' => auth()->user()], 200);
-    // }
+    public function details()
+    {
+        return response()->json(['user' => auth()->user()], 200);
+    }
 }

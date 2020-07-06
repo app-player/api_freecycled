@@ -10,13 +10,13 @@ class PageController extends Controller
     public function display_data()
     {
         $posts = Post::with('category', 'type', 'user')->get();
-
+				$user = auth()->user();
         return response()->json([
             'success' => true,
-            'data' => $posts
+            'data' => $posts,
+						'datauser' => $user
         ]);
     }
-    
     public function update(Request $request, $id)
     {
         $post = auth()->user()->posts()->find($id);

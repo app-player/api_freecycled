@@ -37,10 +37,12 @@ class TypeController extends Controller
     {
         $type_post = Post::where('type_id',$id)->with('user', 'category', 'type')->get();
         $id_= $id;
+				$user = auth()->user();
 
         return response()->json([
             'success' => true,
             'data' => $type_post,
+						'datauser' => $user,
         ]);
     }
 
