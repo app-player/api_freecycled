@@ -9,7 +9,7 @@ class PageController extends Controller
 {
     public function display_data()
     {
-        $posts = Post::with('category', 'type', 'user')->get();
+        $posts = Post::with('category', 'type', 'user')->orderBy('id', 'DESC')->get();
 				$user = auth()->user();
         return response()->json([
             'success' => true,

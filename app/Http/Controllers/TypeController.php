@@ -11,8 +11,8 @@ class TypeController extends Controller
 
     public function index()
     {
-        $types = Type::all();
-        $posts = Post::all();
+        $types = Type::all()->orderBy('id', 'DESC')->get();
+        $posts = Post::all()->orderBy('id', 'DESC')->get();
         return response()->json([
             'success' => true,
             'data' => $types,
@@ -35,7 +35,7 @@ class TypeController extends Controller
 
     public function show($id)
     {
-        $type_post = Post::where('type_id',$id)->with('user', 'category', 'type')->get();
+        $type_post = Post::where('type_id',$id)->with('user', 'category', 'type')->orderBy('id', 'DESC')->get();
         $id_= $id;
 				$user = auth()->user();
 

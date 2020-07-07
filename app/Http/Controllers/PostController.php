@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     public function display_user_post()
     {
-        $posts = auth()->user()->posts()->with('user', 'category', 'type')->get();
+        $posts = auth()->user()->posts()->with('user', 'category', 'type')->orderBy('id', 'DESC')->get();
 				$user = auth()->user();
 				$total = auth()->user()->posts()->with('type')->get()->count();
 				$total_offer = auth()->user()->posts()->with('type')->where('type_id', 1)->get()->count();
@@ -27,7 +27,7 @@ class PostController extends Controller
 
     public function show_user_post($id)
     {
-        $post = auth()->user()->posts()->with('user', 'category', 'type')->get()->find($id);
+        $post = auth()->user()->posts()->with('user', 'category', 'type')->orderBy('id', 'DESC')->get()->find($id);
 				$user = auth()->user();
         if (!$post) {
             return response()->json([

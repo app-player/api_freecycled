@@ -11,7 +11,7 @@ class CategoryController extends Controller
 
     public function display_categories()
     {
-        $posts = Post::with('category', 'type', 'user')->get();
+        $posts = Post::with('category', 'type', 'user')->orderBy('id', 'DESC')->get();
 
         return response()->json([
             'success' => true,
@@ -21,7 +21,7 @@ class CategoryController extends Controller
 
     public function show_categories($id)
     {
-        $category_post = Post::where('category_id',$id)->with('user', 'category', 'type')->get();
+        $category_post = Post::where('category_id',$id)->with('user', 'category', 'type')->orderBy('id', 'DESC')->get();
         $id_= $id;
 
         return response()->json([
@@ -30,21 +30,21 @@ class CategoryController extends Controller
         ]);
     }
 
-    
+
     public function edit(Category $category)
     {
         //
     }
 
-    
+
     public function update(Request $request, Category $category)
     {
         //
     }
 
-    
+
     public function destroy(Category $category)
     {
-        
+
     }
 }
